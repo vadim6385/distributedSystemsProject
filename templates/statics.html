@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+    <div class="card p-1 m-3">
+        <div class="card-body">
+            <canvas id="statics" style="width:100%; height: 300px;"></canvas>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/chart.js') }}"></script>
+<script>
+    var xValues = ["View", "Shard", "Indexing"];
+    var yValues = [`{{viewTime}}`, `{{shardTime}}`, `{{indexingTime}}`];
+    new Chart("statics", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'statics',
+                backgroundColor: "green",
+                data: yValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "Compare with View, Shard, Indexing"
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value, index, ticks) {
+                            return value + "ms";
+                        }
+                    }
+                }],
+                xAxes: [{
+                    barThickness: 25,  // number (pixels) or 'flex'
+                    maxBarThickness: 30 // number (pixels)
+                }]
+            }
+        }
+    });
+</script>
+{% endblock %}
