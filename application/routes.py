@@ -59,8 +59,8 @@ def get_indexing_test():
     return render_template("index_test.html", testindexings=indexings, pagination=pagination)
 
 
-@app.route("/statics")
-def get_statics():
+@app.route("/comparation")
+def get_comparation():
     """
     page for showing times
     """
@@ -83,4 +83,4 @@ def get_statics():
     indexingend = datetime.now()
     resIndexingTime = (indexingend - indexingstart).total_seconds() * 1000
 
-    return render_template("statics.html", viewTime=resViewTime, shardTime=resShardTime, indexingTime=resIndexingTime)
+    return render_template("comparation.html", viewTime=resViewTime, shardTime=resShardTime, indexingTime=resIndexingTime)
