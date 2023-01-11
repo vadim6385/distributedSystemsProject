@@ -1,3 +1,11 @@
+#####################################################
+
+# routes module
+
+# responsible for defining how the application
+# should handle different URL requests
+#####################################################
+
 from datetime import datetime
 
 from flask import render_template, request
